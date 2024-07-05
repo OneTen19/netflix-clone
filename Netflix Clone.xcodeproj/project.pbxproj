@@ -19,6 +19,7 @@
 		6C393EFF2C3245BC009BE4D3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C393EFE2C3245BC009BE4D3 /* SearchViewController.swift */; };
 		6C393F012C3245FF009BE4D3 /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C393F002C3245FF009BE4D3 /* DownloadsViewController.swift */; };
 		6C94EA472C351AC400F14EF0 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C94EA462C351AC400F14EF0 /* APICaller.swift */; };
+		6CCE2B462C37AF0700902574 /* GitIgnoreFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCE2B452C37AF0700902574 /* GitIgnoreFile.swift */; };
 		6CD05A842C36432500BC5F10 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD05A832C36432500BC5F10 /* Movie.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		6C393EFE2C3245BC009BE4D3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6C393F002C3245FF009BE4D3 /* DownloadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
 		6C94EA462C351AC400F14EF0 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		6CCE2B452C37AF0700902574 /* GitIgnoreFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitIgnoreFile.swift; sourceTree = "<group>"; };
 		6CD05A832C36432500BC5F10 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				6C94EA462C351AC400F14EF0 /* APICaller.swift */,
+				6CCE2B452C37AF0700902574 /* GitIgnoreFile.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			files = (
 				6C393EFF2C3245BC009BE4D3 /* SearchViewController.swift in Sources */,
 				6C393EEA2C323AE2009BE4D3 /* MainTabBarViewController.swift in Sources */,
+				6CCE2B462C37AF0700902574 /* GitIgnoreFile.swift in Sources */,
 				6C06EB932C3289B900A016CE /* CollectionViewTableViewCell.swift in Sources */,
 				6C94EA472C351AC400F14EF0 /* APICaller.swift in Sources */,
 				6C035E452C33A1580016F441 /* HeroHeaderUIView.swift in Sources */,
