@@ -19,11 +19,16 @@ struct Constants {
 }
 
 
+enum APIError {
+    case failedTogetData
+}
+
+
 class APICaller {
     static let shared = APICaller()
     
     
-    func getTrendingMovies(completion: @escaping (String) -> Void){
+    func getTrendingMovies(completion: @escaping (Result<[Movie], Error>) -> Void){
         
         let urlString = Constants.urlString + Constants.API_KEY + Constants.itemPerPage + Constants.targetDt
 
@@ -35,29 +40,12 @@ class APICaller {
             guard let data = data , error == nil else {return}
             
             do{
-                
-                // 받아온 API 값 저장
-                let resultAPI = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any]
-                
-//                print(resultAPI!)
-                
-                // 1차 유니코드 디코딩 -> 원하는 영화 리스트가 영화결과라는 항목 내에 있어서 두번에 걸쳐서 디코딩해줘야하는걸로 추정
-                let boxOfficeResult = resultAPI!["boxOfficeResult"] as? [String: Any]
-                
-//                print(boxOfficeResult!)
-                
-                // 2차 유니코드 디코딩 -> 이게 영화 리스트들 저장된 변수
-                let weeklyBoxOfficeList = boxOfficeResult!["weeklyBoxOfficeList"] as? [[String: Any]]
-                
-                weeklyBoxOfficeList?.forEach({ item in
-                    print(item)
-                    print("\n")
-                })
-                
-                
+
+                let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+                completion(.success(results.boxOfficeResult.weeklyBoxOfficeList))
                 
             } catch {
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
             
         }
