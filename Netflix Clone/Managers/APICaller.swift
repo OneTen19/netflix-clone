@@ -7,6 +7,22 @@
 
 import Foundation
 
+extension Bundle {
+    var apiKey: String? {
+        return infoDictionary?["MOVIE_API_KEY"] as? String
+    }
+}
+
+struct Constants {
+    static let API_KEY = Bundle.main.apiKey
+    
+    // 주간 박스오피스, 영화 전체목록, 데일리 박스오피스 등등 선택해서 불러오는 곳 (일단 지금은 주간 박스오피스로)
+    static let urlString = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key="
+    
+    static let itemPerPage = "&itemPerPage=10"
+    static let targetDt = "&targetDt=20240505"
+}
+
 
 enum APIError {
     case failedTogetData
