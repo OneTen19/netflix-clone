@@ -38,7 +38,7 @@ class APICaller {
     static let shared = APICaller()
     
     // Trending Movies
-    func getTrendingMovies(completion: @escaping (Result<[Movie], Error>) -> Void){
+    func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void){
         let urlString = Constants.movieURL + Constants.API_KEY!
 
         guard let url = URL(string: urlString) else {return}
@@ -47,7 +47,7 @@ class APICaller {
             guard let data = data , error == nil else {return}
             
             do{
-                let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
                 completion(.success(results.results))
             } catch {
                 completion(.failure(error))
@@ -60,7 +60,7 @@ class APICaller {
     
     
     // Trending TV
-    func getTrendingTv(completion: @escaping (Result<[Tv], Error>) -> Void){
+    func getTrendingTv(completion: @escaping (Result<[Title], Error>) -> Void){
         let urlString = Constants.tvURL + Constants.API_KEY!
 
         guard let url = URL(string: urlString) else {return}
@@ -69,8 +69,10 @@ class APICaller {
             guard let data = data , error == nil else {return}
             
             do{
-                let results = try JSONDecoder().decode(TrendingTvResponse.self, from: data)
-                completion(.success(results.results))
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
+//                completion(.success(results.results))
+                
+                print(results)
             } catch {
                 completion(.failure(error))
             }
@@ -82,7 +84,7 @@ class APICaller {
     
     
     // Upcoming
-    func getUpcoming(completion: @escaping (Result<[Movie], Error>) -> Void){
+    func getUpcoming(completion: @escaping (Result<[Title], Error>) -> Void){
         let urlString = Constants.upcomingURL + Constants.API_KEY!
 
         guard let url = URL(string: urlString) else {return}
@@ -91,14 +93,12 @@ class APICaller {
             guard let data = data , error == nil else {return}
             
             do{
-                let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
                 //completion(.success(results.results))
                 
                 print(results)
             } catch {
-                //completion(.failure(error))
-                
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
             
         }
@@ -108,7 +108,7 @@ class APICaller {
     
     
     // Popular
-    func getPopular(completion: @escaping (Result<[Movie], Error>) -> Void){
+    func getPopular(completion: @escaping (Result<[Title], Error>) -> Void){
         let urlString = Constants.popularURL + Constants.API_KEY!
 
         guard let url = URL(string: urlString) else {return}
@@ -117,14 +117,12 @@ class APICaller {
             guard let data = data , error == nil else {return}
             
             do{
-                let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
                 //completion(.success(results.results))
                 
                 print(results)
             } catch {
-                //completion(.failure(error))
-                
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
             
         }
@@ -134,7 +132,7 @@ class APICaller {
     
     
     // Top rated
-    func getTopRated(completion: @escaping (Result<[Movie], Error>) -> Void){
+    func getTopRated(completion: @escaping (Result<[Title], Error>) -> Void){
         let urlString = Constants.rateURL + Constants.API_KEY!
 
         guard let url = URL(string: urlString) else {return}
@@ -143,14 +141,12 @@ class APICaller {
             guard let data = data , error == nil else {return}
             
             do{
-                let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
                 //completion(.success(results.results))
                 
                 print(results)
             } catch {
-                //completion(.failure(error))
-                
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
             
         }
