@@ -69,14 +69,9 @@ class HomeViewController: UIViewController {
         //            }
         //        }
         
-        //        APICaller.shared.getTrendingTv { results in
-        //            switch results {
-        //            case .success(let tv):
-        //                print(tv)
-        //            case .failure(let error):
-        //                print(error)
-        //            }
-        //        }
+        APICaller.shared.getTrendingTv { _ in
+            
+        }
         
         //        APICaller.shared.getUpcoming { _ in
         //
@@ -86,9 +81,10 @@ class HomeViewController: UIViewController {
         //
         //        }
         
-        APICaller.shared.getTopRated { _ in
-            
-        }
+//        APICaller.shared.getTopRated { _ in
+//            
+//        }
+        
     }
     
 }
