@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         table.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
         return table
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -56,19 +56,39 @@ class HomeViewController: UIViewController {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
     }
-
+    
     
     private func fetchData() {
         
-        APICaller.shared.getTrendingMovies { results in
-            switch results {
-            case .success(let movies):
-                print(movies)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        //        APICaller.shared.getTrendingMovies { results in
+        //            switch results {
+        //            case .success(let movies):
+        //                print(movies)
+        //            case .failure(let error):
+        //                print(error)
+        //            }
+        //        }
         
+        //        APICaller.shared.getTrendingTv { results in
+        //            switch results {
+        //            case .success(let tv):
+        //                print(tv)
+        //            case .failure(let error):
+        //                print(error)
+        //            }
+        //        }
+        
+        //        APICaller.shared.getUpcoming { _ in
+        //
+        //        }
+        
+        //        APICaller.shared.getPopular { _ in
+        //
+        //        }
+        
+        APICaller.shared.getTopRated { _ in
+            
+        }
     }
     
 }
@@ -114,7 +134,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     // 헤더 부분
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else {return}
-       
+        
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
         header.textLabel?.textColor = .white
