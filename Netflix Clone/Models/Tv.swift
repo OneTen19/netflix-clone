@@ -1,20 +1,19 @@
 //
-//  Movie.swift
+//  Tv.swift
 //  Netflix Clone
 //
-//  Created by OneTen on 7/4/24.
+//  Created by OneTen on 7/9/24.
 //
 
 import Foundation
 
-struct TrendingMoviesResponse : Decodable {
-    let results : [Movie]
+struct TrendingTvResponse : Decodable {
+    let results : [Tv]
 }
 
 
-struct Movie : Decodable {
+struct Tv : Decodable {
     let id: Int
-    let name: String?
     let title : String?
     let original_language : String?
     let original_title: String?
