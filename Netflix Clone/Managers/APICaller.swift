@@ -7,20 +7,14 @@
 
 import Foundation
 
-extension Bundle {
-    var apiKey: String? {
-        return infoDictionary?["MOVIE_API_KEY"] as? String
-    }
-}
-
+// 불러올 API 정하는 곳
 struct Constants {
     static let API_KEY = Bundle.main.apiKey
     
-    // 주간 박스오피스, 영화 전체목록, 데일리 박스오피스 등등 선택해서 불러오는 곳 (일단 지금은 주간 박스오피스로)
-    static let urlString = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key="
+    // Trending Movies
+    static let baseURL = "https://api.themoviedb.org/3/trending/movie/day?api_key="
+
     
-    static let itemPerPage = "&itemPerPage=10"
-    static let targetDt = "&targetDt=20240505"
 }
 
 
@@ -32,49 +26,26 @@ enum APIError {
 class APICaller {
     static let shared = APICaller()
     
-    
+    // Trending Movies
     func getTrendingMovies(completion: @escaping (Result<[Movie], Error>) -> Void){
-        
-        let urlString = Constants.urlString + Constants.API_KEY + Constants.itemPerPage + Constants.targetDt
+        let urlString = Constants.baseURL + Constants.API_KEY!
 
-        
         guard let url = URL(string: urlString) else {return}
-        
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data , error == nil else {return}
             
             do{
-
                 let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
-                completion(.success(results.boxOfficeResult.weeklyBoxOfficeList))
-                
+                completion(.success(results.results))
             } catch {
                 completion(.failure(error))
             }
             
         }
         
-        
         task.resume()
-        
     }
     
-    
-    private func decodeUnicode(_ unicodeStr: String) -> String? {
-        let tempString = unicodeStr.replacingOccurrences(of: "\\u", with: "\\U")
-        let tempString2 = "\"\(tempString)\""
-        let data = tempString2.data(using: .utf8)!
-        
-        if let decodedString = try? PropertyListSerialization.propertyList(
-            from: data,
-            options: [],
-            format: nil
-        ) as? String {
-            return decodedString.replacingOccurrences(of: "\\r\\n", with: "\n")
-        }
-        
-        return nil
-    }
     
 }
