@@ -8,32 +8,20 @@
 import Foundation
 
 struct TrendingMoviesResponse : Decodable {
-    let boxOfficeResult : BoxOfficeResult
+    let results : [Movie]
 }
 
-struct BoxOfficeResult: Decodable {
-    let boxofficeType: String?
-    let showRange: String?
-    let weeklyBoxOfficeList: [Movie]
-}
 
 struct Movie : Decodable {
-    let rnum : String?
-    let rankOldAndNew : String?
-    let salesAcc : String?
-    let salesInten : String?
-    let openDt : String?
-    let scrnCnt : String?
-    let audiInten : String?
-    let audiCnt : String?
-    let audiChange : String?
-    let movieNm : String?
-    let movieCd : String?
-    let showCnt : String?
-    let salesAmt : String?
-    let audiAcc : String?
-    let rankInten : String?
-    let rank : String?
-    let salesChange : String?
-    let salesShare : String?
+    let id: Int
+    let title : String?
+    let original_language : String?
+    let original_title: String?
+    let overview: String?
+    let poster_path: String?
+    let media_type: String?
+    let popularity: Double?
+    let release_date: String?
+    let vote_average: Double?
+    let vote_count: Int?
 }

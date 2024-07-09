@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     
-    let sectionTitles : [String] = ["Trending Movies", "Trending TV", "Popular", "Upcoming Movies", "Top rated"]
+    let sectionTitles : [String] = ["Trending Movies", "Trending Tv", "Popular", "Upcoming Movies", "Top rated"]
     
     
     private let homeFeedTable : UITableView = {
@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTable.tableHeaderView = headerView
         
-        getTrendingMovies()
+        fetchData()
         
         
     }
@@ -58,7 +58,8 @@ class HomeViewController: UIViewController {
     }
 
     
-    private func getTrendingMovies() {
+    private func fetchData() {
+        
         APICaller.shared.getTrendingMovies { results in
             switch results {
             case .success(let movies):
@@ -67,10 +68,8 @@ class HomeViewController: UIViewController {
                 print(error)
             }
         }
+        
     }
-
-    
-    
     
 }
 
