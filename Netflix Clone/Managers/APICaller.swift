@@ -26,6 +26,9 @@ struct Constants {
     // Top rated
     static let rateURL = "https://api.themoviedb.org/3/tv/top_rated?api_key="
     
+    // Discover Movies
+    static let discoverURL = "https://api.themoviedb.org/3/discover/movie?api_key="
+    
 }
 
 
@@ -128,6 +131,28 @@ class APICaller {
     // Top rated
     func getTopRated(completion: @escaping (Result<[Title], Error>) -> Void){
         let urlString = Constants.rateURL + Constants.API_KEY!
+
+        guard let url = URL(string: urlString) else {return}
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data , error == nil else {return}
+            
+            do{
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
+                completion(.success(results.results))
+            } catch {
+                completion(.failure(error))
+            }
+            
+        }
+        
+        task.resume()
+    }
+    
+    
+    // Discover Movies
+    func getDiscoverMovies(completion: @escaping (Result<[Title], Error>) -> Void){
+        let urlString = Constants.discoverURL + Constants.API_KEY! + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
 
         guard let url = URL(string: urlString) else {return}
         
