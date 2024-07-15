@@ -28,6 +28,7 @@
 		6C80F6682C40EDC800A9F2ED /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C80F6672C40EDC800A9F2ED /* SearchResultViewController.swift */; };
 		6C94EA472C351AC400F14EF0 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C94EA462C351AC400F14EF0 /* APICaller.swift */; };
 		6CD05A842C36432500BC5F10 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD05A832C36432500BC5F10 /* Title.swift */; };
+		6CF9F6FD2C44C2690080BEDE /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF9F6FC2C44C2690080BEDE /* YoutubeSearchResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		6C80F6672C40EDC800A9F2ED /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		6C94EA462C351AC400F14EF0 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		6CD05A832C36432500BC5F10 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
+		6CF9F6FC2C44C2690080BEDE /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				6CD05A832C36432500BC5F10 /* Title.swift */,
+				6CF9F6FC2C44C2690080BEDE /* YoutubeSearchResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				6C393F012C3245FF009BE4D3 /* DownloadsViewController.swift in Sources */,
 				6C393EE62C323AE2009BE4D3 /* AppDelegate.swift in Sources */,
 				6C72885B2C37C26500FC7EB4 /* Extensions.swift in Sources */,
+				6CF9F6FD2C44C2690080BEDE /* YoutubeSearchResponse.swift in Sources */,
 				6C393EE82C323AE2009BE4D3 /* SceneDelegate.swift in Sources */,
 				6C393EFD2C324587009BE4D3 /* UpcomingViewController.swift in Sources */,
 				6CD05A842C36432500BC5F10 /* Title.swift in Sources */,
