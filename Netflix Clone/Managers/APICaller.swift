@@ -35,7 +35,7 @@ struct Constants {
     static let searchURL = "https://api.themoviedb.org/3/search/movie?"
     
     // Youtube baseURL
-    static let youtubeURL = "https://developers.google.com/youtube/v3/search"
+    static let youtubeURL = "https://youtube.googleapis.com/youtube/v3/search?"
     
 }
 
@@ -205,7 +205,8 @@ class APICaller {
     }
     
     
-    func getMovie(with query: String){
+    // Toutube API
+    func getMovie(with query: String, completion: @escaping (Result<VideoElement, Error>) -> Void){
         
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
         
@@ -215,11 +216,10 @@ class APICaller {
             guard let data = data , error == nil else {return}
             
             do{
-                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print(results)
-                
+                let results = try JSONDecoder().decode(YoutubeSearchResponse.self, from: data)
+                completion(.success(results.items[0]))
             } catch {
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
             
         }

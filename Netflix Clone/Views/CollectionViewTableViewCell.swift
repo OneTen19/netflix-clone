@@ -78,4 +78,8 @@ extension CollectionViewTableViewCell : UICollectionViewDelegate, UICollectionVi
         return titles.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
 }
