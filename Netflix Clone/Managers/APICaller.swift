@@ -9,7 +9,9 @@ import Foundation
 
 // 불러올 API 정하는 곳
 struct Constants {
-    static let API_KEY = Bundle.main.apiKey
+    static let API_KEY = Bundle.main.apiKey!
+    
+    static let YoutubeAPI_KEY = Bundle.main.youtubeAPIKey!
     
     // Trending Movies
     static let movieURL = "https://api.themoviedb.org/3/trending/movie/day?api_key="
@@ -32,6 +34,9 @@ struct Constants {
     // Search
     static let searchURL = "https://api.themoviedb.org/3/search/movie?"
     
+    // Youtube baseURL
+    static let youtubeURL = "https://developers.google.com/youtube/v3/search"
+    
 }
 
 
@@ -45,7 +50,7 @@ class APICaller {
     
     // Trending Movies
     func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void){
-        let urlString = Constants.movieURL + Constants.API_KEY!
+        let urlString = Constants.movieURL + Constants.API_KEY
 
         guard let url = URL(string: urlString) else {return}
         
@@ -67,7 +72,7 @@ class APICaller {
     
     // Trending TV
     func getTrendingTv(completion: @escaping (Result<[Title], Error>) -> Void){
-        let urlString = Constants.tvURL + Constants.API_KEY!
+        let urlString = Constants.tvURL + Constants.API_KEY
 
         guard let url = URL(string: urlString) else {return}
         
@@ -89,7 +94,7 @@ class APICaller {
     
     // Upcoming
     func getUpcoming(completion: @escaping (Result<[Title], Error>) -> Void){
-        let urlString = Constants.upcomingURL + Constants.API_KEY!
+        let urlString = Constants.upcomingURL + Constants.API_KEY
 
         guard let url = URL(string: urlString) else {return}
         
@@ -111,7 +116,7 @@ class APICaller {
     
     // Popular
     func getPopular(completion: @escaping (Result<[Title], Error>) -> Void){
-        let urlString = Constants.popularURL + Constants.API_KEY!
+        let urlString = Constants.popularURL + Constants.API_KEY
 
         guard let url = URL(string: urlString) else {return}
         
@@ -133,7 +138,7 @@ class APICaller {
     
     // Top rated
     func getTopRated(completion: @escaping (Result<[Title], Error>) -> Void){
-        let urlString = Constants.rateURL + Constants.API_KEY!
+        let urlString = Constants.rateURL + Constants.API_KEY
 
         guard let url = URL(string: urlString) else {return}
         
@@ -155,7 +160,7 @@ class APICaller {
     
     // Discover Movies
     func getDiscoverMovies(completion: @escaping (Result<[Title], Error>) -> Void){
-        let urlString = Constants.discoverURL + Constants.API_KEY! + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
+        let urlString = Constants.discoverURL + Constants.API_KEY + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
 
         guard let url = URL(string: urlString) else {return}
         
@@ -180,7 +185,7 @@ class APICaller {
         
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
         
-        let urlString = Constants.searchURL + "query=\(query)&api_key=" + Constants.API_KEY!
+        let urlString = Constants.searchURL + "query=\(query)&api_key=" + Constants.API_KEY
 
         guard let url = URL(string: urlString) else {return}
         
@@ -200,7 +205,28 @@ class APICaller {
     }
     
     
-    
+    func getMovie(with query: String){
+        
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+        
+        guard let url = URL(string: "\(Constants.youtubeURL)q=\(query)&key=\(Constants.YoutubeAPI_KEY)") else {return}
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data , error == nil else {return}
+            
+            do{
+                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                print(results)
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        task.resume()
+        
+    }
     
     
 }

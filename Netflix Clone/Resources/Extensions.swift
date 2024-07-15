@@ -18,4 +18,8 @@ extension Bundle {
     var apiKey: String? {
         return infoDictionary?["MOVIE_API_KEY"] as? String
     }
+    
+    var youtubeAPIKey: String? {
+        return infoDictionary?["YOUTUBE_API_KEY"] as? String
+    }
 }
