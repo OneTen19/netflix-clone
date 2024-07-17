@@ -72,7 +72,7 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         
         let title = titles[indexPath.row]
         
-        guard let titleName = title.original_title ?? title.name else {return}
+        guard let titleName = title.original_title ?? title.original_name else {return}
         
         APICaller.shared.getMovie(with: titleName) { [weak self] result in
             switch result {

@@ -14,15 +14,12 @@ struct TrendingTitleResponse : Decodable {
 
 struct Title : Decodable {
     let id: Int
-    let name: String?
-    let title : String?
-    let original_language : String?
+    let original_name: String?
     let original_title: String?
     let overview: String?
     let poster_path: String?
     let media_type: String?
-    let popularity: Double?
     let release_date: String?
-    let vote_average: Double?
-    let vote_count: Int?
+    let vote_average: Double
+    let vote_count: Int
 }

@@ -63,7 +63,16 @@ class CollectionViewTableViewCell: UITableViewCell {
     }
     
     private func downloadTitleAt(indexpath: IndexPath) {
-        print("Downloading \(titles[indexpath.row].original_title ?? titles[indexpath.row].name ?? "")")
+        
+        DataPersistenceManager.shared.downloadTitleWith(model: titles[indexpath.row]) { result in
+            switch result {
+            case .success():
+                print("downloaded to Database")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
     }
 }
 
@@ -92,7 +101,7 @@ extension CollectionViewTableViewCell : UICollectionViewDelegate, UICollectionVi
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let title = titles[indexPath.row]
-        guard let titleName = title.original_title ?? title.name else {return}
+        guard let titleName = title.original_title ?? title.original_name else {return}
         
         
         APICaller.shared.getMovie(with: titleName + " trailer") { [weak self] result in
@@ -111,23 +120,7 @@ extension CollectionViewTableViewCell : UICollectionViewDelegate, UICollectionVi
         }
         
     }
-  
-    
-//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-//        let config = UIContextMenuConfiguration(
-//            identifier: nil,
-//            previewProvider: nil) { [weak self] _ in
-//                let downloadAction = UIAction(title: "Download", subtitle: nil, image: nil, identifier: nil,
-//                                              discoverabilityTitle: nil, state: .off) { _ in
-//                    self?.downloadTitleAt(indexpath: indexPath)
-//                }
-//                
-//                return UIMenu(title: "",image: nil,identifier: nil,options: .displayInline,children: [downloadAction])
-//            }
-//        
-//        return config
-//    }
-    
+
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
         let config = UIContextMenuConfiguration(
             identifier: nil,
@@ -142,5 +135,7 @@ extension CollectionViewTableViewCell : UICollectionViewDelegate, UICollectionVi
         
         return config
     }
+    
+    
     
 }

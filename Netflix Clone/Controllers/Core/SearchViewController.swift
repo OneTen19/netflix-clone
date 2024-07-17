@@ -88,7 +88,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let title = titles[indexPath.row]
-        cell.configure(with: TitleViewModel(titleName: (title.original_title ?? title.name) ?? "Unknown title",
+        cell.configure(with: TitleViewModel(titleName: (title.original_title ?? title.original_name) ?? "Unknown title",
                                             posterURL: title.poster_path ?? ""))
         
         return cell
@@ -105,7 +105,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let title = titles[indexPath.row]
         
-        guard let titleName = title.original_title ?? title.name else {return}
+        guard let titleName = title.original_title ?? title.original_name else {return}
         
         APICaller.shared.getMovie(with: titleName) { [weak self] result in
             switch result {
