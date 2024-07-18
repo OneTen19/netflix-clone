@@ -70,13 +70,11 @@ UIKit 기반 코드를 이해할 수 있는 역량을 기르기 위해 진행한
 
 <img height="300" alt="image" src="https://github.com/user-attachments/assets/490dd5c4-13fd-47df-b09f-2895ab5c8090">
 
-
 </br>
 
 #### ▶ Search Screen
 
-<img height="300" alt="image" src="https://github.com/user-attachments/assets/9954bd31-e61c-4aa1-95fb-2a68f7e48f27"></br>
-
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/9954bd31-e61c-4aa1-95fb-2a68f7e48f27">
 
 </br>
 
@@ -84,9 +82,7 @@ UIKit 기반 코드를 이해할 수 있는 역량을 기르기 위해 진행한
 
 <img height="300" alt="image" src="https://github.com/user-attachments/assets/0a5ec2db-627c-489b-b77d-b85b29505c55">
 
-
 </br>
-
 
 ---
 
